@@ -3,3 +3,7 @@
 - install Tailwind css
 - install daisy ui
 - add navbar component to app.jsx
+- install react-router-dom
+- congired routing
+- outlet
+- footer
