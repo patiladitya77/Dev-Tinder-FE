@@ -11,3 +11,7 @@
 - install axios
 - CORS - install cors in backend - add middleware with configurstion: orgin , credentials:true
 - when making API call pass {withCredentils:true} as 2nd parameter in axios function
+- install RTK
+- appstore
+- userSlice
+- useNavigate hook => after login redirecting to feed page
