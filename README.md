@@ -15,3 +15,5 @@
 - appstore
 - userSlice
 - useNavigate hook => after login redirecting to feed page
+- protecting routes => cannot use URL's without token
+- if token is not present, dedirect to login page
