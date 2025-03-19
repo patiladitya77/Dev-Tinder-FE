@@ -11,6 +11,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showToast, setShowToast] = useState(false);
 
   const handleLogin = async () => {
     try {
@@ -23,7 +24,11 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data));
-      return navigate("/feed");
+      setShowToast(true);
+      setTimeout(() => {
+        setShowToast(false);
+        return navigate("/feed");
+      }, 2000);
     } catch (err) {
       setError(err.message);
       console.log(err.message);
@@ -31,38 +36,47 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center py-6">
-      <div className="card card-border bg-base-300 w-96">
-        <div className="card-body">
-          <h2 className="card-title">Login</h2>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">Email ID</span>
-            </div>
-            <input
-              value={emailId}
-              type="text"
-              className="input input-bordered w-full max-w-xs"
-              onChange={(e) => setEmailId(e.target.value)}
-            />
-          </label>
-          <label className="form-control w-full max-w-xs">
-            <div className="label">
-              <span className="label-text">Password</span>
-            </div>
-            <input
-              value={password}
-              type="text"
-              className="input input-bordered w-full max-w-xs"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-          <p className="text-red-500"> {error}</p>
+    <div>
+      {showToast && (
+        <div className="toast toast-top toast-center">
+          <div className="alert alert-info">
+            <span>Login successfull</span>
+          </div>
+        </div>
+      )}
+      <div className="flex justify-center py-6">
+        <div className="card card-border bg-base-300 w-96">
+          <div className="card-body">
+            <h2 className="card-title">Login</h2>
+            <label className="form-control w-full max-w-xs">
+              <div className="label">
+                <span className="label-text">Email ID</span>
+              </div>
+              <input
+                value={emailId}
+                type="text"
+                className="input input-bordered w-full max-w-xs"
+                onChange={(e) => setEmailId(e.target.value)}
+              />
+            </label>
+            <label className="form-control w-full max-w-xs">
+              <div className="label">
+                <span className="label-text">Password</span>
+              </div>
+              <input
+                value={password}
+                type="text"
+                className="input input-bordered w-full max-w-xs"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+            <p className="text-red-500"> {error}</p>
 
-          <div className="card-actions justify-center">
-            <button className="btn btn-primary" onClick={handleLogin}>
-              Login
-            </button>
+            <div className="card-actions justify-center">
+              <button className="btn btn-primary" onClick={handleLogin}>
+                Login
+              </button>
+            </div>
           </div>
         </div>
       </div>

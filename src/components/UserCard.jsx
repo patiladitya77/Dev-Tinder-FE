@@ -3,7 +3,7 @@ const UserCard = ({ user }) => {
   console.log(user);
 
   return (
-    <div className="card bg-base-300 w-96 shadow-sm ">
+    <div className="card bg-base-300 w-96 h-auto shadow-sm ">
       <figure>
         <img src={photoURL} alt="photo" />
       </figure>
@@ -12,7 +12,7 @@ const UserCard = ({ user }) => {
         {age && gender && <p>{age + ", " + gender}</p>}
         <p>{about}</p>
         <div className="card-actions justify-center my-4">
-          <button className="btn btn-primary">igonre</button>
+          <button className="btn btn-primary">ignore</button>
           <button className="btn btn-secondary">interested</button>
         </div>
       </div>

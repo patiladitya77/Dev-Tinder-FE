@@ -20,3 +20,5 @@
 - logout
 - fetch feed
 - user card
+- edit profile
+- Toast
