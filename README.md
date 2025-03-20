@@ -23,3 +23,4 @@
 - edit profile
 - Toast
 - see all connections
+- see all requests
