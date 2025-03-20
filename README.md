@@ -22,3 +22,4 @@
 - user card
 - edit profile
 - Toast
+- see all connections
