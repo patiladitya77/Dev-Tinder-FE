@@ -1,9 +1,9 @@
 import { useState } from "react";
 import UserCard from "./UserCard";
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import PropTypes from "prop-types";
 
 const EditProfile = ({ user }) => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const EditProfile = ({ user }) => {
 
     try {
       const res = await axios.put(
-        BASE_URL + "/profile/edit",
+        import.meta.env.VITE_BASE_URL + "/profile/edit",
         { firstName, lastName, age, gender, about, photoURL },
         { withCredentials: true }
       );
@@ -134,6 +134,17 @@ const EditProfile = ({ user }) => {
       )}
     </div>
   );
+};
+
+EditProfile.propTypes = {
+  user: PropTypes.shape({
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    age: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    gender: PropTypes.string,
+    about: PropTypes.string,
+    photoURL: PropTypes.string,
+  }).isRequired,
 };
 
 export default EditProfile;

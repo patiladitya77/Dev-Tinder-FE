@@ -1,5 +1,4 @@
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequest, removeRequest } from "../utils/requestsSlice";
@@ -9,9 +8,12 @@ const Requests = () => {
   const requests = useSelector((store) => store.request);
   const fetchRequest = async () => {
     try {
-      const res = await axios.get(BASE_URL + "/users/request/received", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        import.meta.env.VITE_BASE_URL + "/users/request/received",
+        {
+          withCredentials: true,
+        }
+      );
       dispatch(addRequest(res.data.data));
       console.log(res);
     } catch (err) {
@@ -21,8 +23,8 @@ const Requests = () => {
 
   const reviewRequest = (status, _id) => {
     try {
-      const res = axios.post(
-        BASE_URL + "/request/review/" + status + "/" + _id,
+      axios.post(
+        import.meta.env.VITE_BASE_URL + "/request/review/" + status + "/" + _id,
         {},
         { withCredentials: true }
       );

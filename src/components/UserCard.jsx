@@ -1,7 +1,7 @@
 import axios from "axios";
-import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../utils/feedSlice";
+import PropTypes from "prop-types";
 
 const UserCard = ({ user }) => {
   const { photoURL, firstName, lastName, about, age, gender, _id } = user;
@@ -9,8 +9,12 @@ const UserCard = ({ user }) => {
 
   const handlesendRequest = async (status, userId) => {
     try {
-      const res = await axios.post(
-        BASE_URL + "/request/send/" + status + "/" + userId,
+      await axios.post(
+        import.meta.env.VITE_BASE_URL +
+          "/request/send/" +
+          status +
+          "/" +
+          userId,
         {},
         { withCredentials: true }
       );
@@ -46,6 +50,18 @@ const UserCard = ({ user }) => {
       </div>
     </div>
   );
+};
+
+UserCard.propTypes = {
+  user: PropTypes.shape({
+    photoURL: PropTypes.string,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    about: PropTypes.string,
+    age: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    gender: PropTypes.string,
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default UserCard;
