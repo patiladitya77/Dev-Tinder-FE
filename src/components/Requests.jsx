@@ -1,14 +1,14 @@
-import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequest, removeRequest } from "../utils/requestsSlice";
+import axiosInstance from "../utils/axiosInstance";
 
 const Requests = () => {
   const dispatch = useDispatch();
   const requests = useSelector((store) => store.request);
   const fetchRequest = async () => {
     try {
-      const res = await axios.get(
+      const res = await axiosInstance.get(
         import.meta.env.VITE_BASE_URL + "/users/request/received",
         {
           withCredentials: true,
@@ -23,7 +23,7 @@ const Requests = () => {
 
   const reviewRequest = (status, _id) => {
     try {
-      axios.post(
+      axiosInstance.post(
         import.meta.env.VITE_BASE_URL + "/request/review/" + status + "/" + _id,
         {},
         { withCredentials: true }

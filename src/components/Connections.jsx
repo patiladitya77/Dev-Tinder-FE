@@ -1,14 +1,14 @@
-import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnection } from "../utils/connectionSlice";
+import axiosInstance from "../utils/axiosInstance";
 
 const Connections = () => {
   const dispatch = useDispatch();
   const connections = useSelector((store) => store.connection);
   const fetchConnections = async () => {
     try {
-      const res = await axios.get(
+      const res = await axiosInstance.get(
         import.meta.env.VITE_BASE_URL + "/users/connections",
         {
           withCredentials: true,

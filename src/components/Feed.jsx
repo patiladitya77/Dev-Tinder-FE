@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFeed } from "../utils/feedSlice";
 import UserCard from "./UserCard";
+import axiosInstance from "../utils/axiosInstance";
 
 const Feed = () => {
   const dispatch = useDispatch();
@@ -10,9 +10,12 @@ const Feed = () => {
 
   const getFeed = async () => {
     try {
-      const res = await axios.get(import.meta.env.VITE_BASE_URL + "/feed", {
-        withCredentials: true,
-      });
+      const res = await axiosInstance.get(
+        import.meta.env.VITE_BASE_URL + "/feed",
+        {
+          withCredentials: true,
+        }
+      );
       dispatch(addFeed(res.data));
     } catch (err) {
       console.log(err);

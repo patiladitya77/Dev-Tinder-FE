@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../utils/feedSlice";
 import PropTypes from "prop-types";
+import axiosInstance from "../utils/axiosInstance";
 
 const UserCard = ({ user }) => {
   const { photoURL, firstName, lastName, about, age, gender, _id } = user;
@@ -9,7 +9,7 @@ const UserCard = ({ user }) => {
 
   const handlesendRequest = async (status, userId) => {
     try {
-      await axios.post(
+      await axiosInstance.post(
         import.meta.env.VITE_BASE_URL +
           "/request/send/" +
           status +

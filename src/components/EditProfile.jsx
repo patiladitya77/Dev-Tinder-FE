@@ -1,9 +1,9 @@
 import { useState } from "react";
 import UserCard from "./UserCard";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import PropTypes from "prop-types";
+import axiosInstance from "../utils/axiosInstance";
 
 const EditProfile = ({ user }) => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const EditProfile = ({ user }) => {
     //clear error msgs
 
     try {
-      const res = await axios.put(
+      const res = await axiosInstance.put(
         import.meta.env.VITE_BASE_URL + "/profile/edit",
         { firstName, lastName, age, gender, about, photoURL },
         { withCredentials: true }
